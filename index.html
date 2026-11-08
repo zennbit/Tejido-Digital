@@ -30,8 +30,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .nav{display:flex;align-items:center;justify-content:space-between;height:62px}
 .logo{font-family:Fraunces,Georgia,serif;font-weight:700;font-size:20px;text-decoration:none;display:flex;align-items:center;gap:8px}
 .logo i{width:22px;height:22px;border-radius:6px;display:inline-block;background:
- repeating-linear-gradient(0deg,var(--accent) 0 3px,transparent 3px 7px),
- repeating-linear-gradient(90deg,var(--teal) 0 3px,transparent 3px 7px)}
+ ⁡⁢repetition-linear-gradient(0deg,var(--accent) 0 3px,transparent 3px 7px),⁡
+ ⁡repeating-linear-gradient(90deg,var(--teal) 0 3px,transparent 3px 7px)}
 .links{display:flex;gap:22px;align-items:center;font-size:15px}
 .links a{text-decoration:none;color:var(--muted)}
 .links a:hover{color:var(--text)}
@@ -40,8 +40,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .btn.wa{background:#25d366;color:#fff!important;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
 .hero{position:relative;padding:84px 0 72px;overflow:hidden}
 .hero::before{content:"";position:absolute;inset:0;opacity:.16;pointer-events:none;background:
- repeating-linear-gradient(0deg,var(--accent) 0 2px,transparent 2px 22px),
- repeating-linear-gradient(90deg,var(--teal) 0 2px,transparent 2px 22px);
+ ⁡⁢repeating-linear-gradient(0deg,var(--accent) 0 2px,transparent 2px 22px),⁡
+ ⁡repeating-linear-gradient(90deg,var(--teal) 0 2px,transparent 2px 22px);⁡
  -webkit-mask-image:linear-gradient(115deg,#000 0%,transparent 62%);mask-image:linear-gradient(115deg,#000 0%,transparent 62%)}
 .hero .wrap{position:relative}
 .eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:18px}
@@ -168,7 +168,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <div><label for="e">Correo o Teléfono</label><input id="e" name="contact" required></div>
         <div><label for="m">¿Qué necesitas?</label><textarea id="m" name="message" required></textarea></div>
         <button class="btn" type="submit">Enviar mensaje al correo</button>
-        <p id="msg" role="status"></p>
       </form>
     </div>
   </section>
@@ -180,32 +179,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 <script>
 document.getElementById("y").textContent = new Date().getFullYear();
-
-var form = document.getElementById("f");
-form.addEventListener("submit", async function(ev) {
-  ev.preventDefault();
-  var out = document.getElementById("msg");
-  var data = new FormData(form);
-  
-  out.textContent = "Enviando mensaje...";
-  
-  try {
-    let response = await fetch(form.action, {
-      method: form.method,
-      body: data,
-      headers: { 'Accept': 'application/json' }
-    });
-    
-    if (response.ok) {
-      out.textContent = "¡Mensaje enviado con éxito! Te responderemos pronto a zenbbit@gmail.com";
-      form.reset();
-    } else {
-      out.textContent = "Hubo un error al enviar. Escríbenos directamente por WhatsApp.";
-    }
-  } catch (error) {
-    out.textContent = "Error de conexión. Usa el botón de WhatsApp.";
-  }
-});
 </script>
 </body>
 </html>

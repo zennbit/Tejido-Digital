@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tejido Digital · Páginas web que conectan tu negocio con tus clientes</title>
+<meta name="description" content="Tejido Digital crea páginas web claras, rápidas y a tu medida para emprendimientos y negocios. Que te encuentren en Google y te contacten.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f1e9;--surface:#fffaf2;--text:#1d2433;--muted:#5b6475;--line:#e3d9c8;
+  --accent:#d9552b;--accent-ink:#ffffff;--teal:#1f6f78;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){color-scheme:dark;--bg:#12151c;--surface:#1b202b;--text:#ece7dd;--muted:#a3abba;--line:#2b3242;--accent:#ef7048;--accent-ink:#1a0d07;--teal:#5cc0ca}
+}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#12151c;--surface:#1b202b;--text:#ece7dd;--muted:#a3abba;--line:#2b3242;--accent:#ef7048;--accent-ink:#1a0d07;--teal:#5cc0ca}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.6 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:Fraunces,Georgia,"Times New Roman",serif;line-height:1.15;margin:0}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+.nav{display:flex;align-items:center;justify-content:space-between;height:62px}
+.logo{font-family:Fraunces,Georgia,serif;font-weight:700;font-size:20px;text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo i{width:22px;height:22px;border-radius:6px;display:inline-block;background:
+ repeating-linear-gradient(0deg,var(--accent) 0 3px,transparent 3px 7px),
+ repeating-linear-gradient(90deg,var(--teal) 0 3px,transparent 3px 7px)}
+.links{display:flex;gap:22px;align-items:center;font-size:15px}
+.links a{text-decoration:none;color:var(--muted)}
+.links a:hover{color:var(--text)}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-ink)!important;padding:13px 24px;border-radius:999px;font-weight:600;text-decoration:none;border:0;font-size:16px;cursor:pointer;text-align:center}
+.btn.ghost{background:transparent;color:var(--text)!important;border:1.5px solid var(--line)}
+.btn.wa{background:#25d366;color:#fff!important;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+.hero{position:relative;padding:84px 0 72px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;opacity:.16;pointer-events:none;background:
+ repeating-linear-gradient(0deg,var(--accent) 0 2px,transparent 2px 22px),
+ repeating-linear-gradient(90deg,var(--teal) 0 2px,transparent 2px 22px);
+ -webkit-mask-image:linear-gradient(115deg,#000 0%,transparent 62%);mask-image:linear-gradient(115deg,#000 0%,transparent 62%)}
+.hero .wrap{position:relative}
+.eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:18px}
+h1{font-size:clamp(36px,6.4vw,64px);max-width:14em;font-weight:700}
+h1 em{font-style:normal;color:var(--accent)}
+.lead{font-size:clamp(18px,2.2vw,21px);color:var(--muted);max-width:34em;margin:22px 0 32px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+section{padding:68px 0}
+.alt{background:var(--surface);border-block:1px solid var(--line)}
+h2{font-size:clamp(28px,4vw,40px);margin-bottom:12px}
+.sub{color:var(--muted);max-width:36em;margin:0 0 36px}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px}
+.alt .card{background:var(--bg)}
+.card h3{font-size:21px;margin:12px 0 8px}
+.card p{margin:0;color:var(--muted);font-size:16px}
+.ico{font-size:26px}
+.steps{counter-reset:s;display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.step{position:relative;padding-top:54px}
+.step::before{counter-increment:s;content:counter(s);position:absolute;top:0;left:0;width:40px;height:40px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font:700 18px Fraunces,Georgia,serif}
+.step h3{font-size:21px;margin-bottom:6px}
+.step p{margin:0;color:var(--muted);font-size:16px}
+.work{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.shot{border-radius:16px;border:1px solid var(--line);overflow:hidden;background:var(--surface)}
+.thumb{height:170px;display:grid;place-items:center;color:#fff;font:700 28px Fraunces,Georgia,serif;text-align:center;padding:16px;background:linear-gradient(135deg,#6b3a2a,#c4693a)}
+.thumb.next{background:repeating-linear-gradient(45deg,var(--line) 0 10px,transparent 10px 20px);color:var(--muted);font-size:20px}
+.shot div.t{padding:18px 20px}
+.shot h3{font-size:20px;margin-bottom:4px}
+.shot p{margin:0;color:var(--muted);font-size:15px}
+.contact{display:grid;gap:34px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));align-items:start}
+form{display:grid;gap:12px}
+label{font-size:14px;font-weight:600}
+input,textarea{width:100%;font:inherit;color:var(--text);background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:5px}
+input:focus,textarea:focus{outline:2px solid var(--teal);outline-offset:1px}
+textarea{min-height:120px;resize:vertical}
+#msg{font-size:14px;color:var(--teal);min-height:1.3em;margin:0}
+footer{padding:30px 0 40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (max-width:640px){.links a:not(.btn){display:none}.hero{padding:56px 0 52px}section{padding:52px 0}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#inicio"><i></i>Tejido Digital</a>
+    <nav class="links">
+      <a href="#servicios">Servicios</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#trabajos">Trabajos</a>
+      <a class="btn" href="#contacto" style="padding:9px 18px;font-size:15px">Cotizar</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Diseño y creación de páginas web</div>
+      <h1>Tu negocio, <em>bien tejido</em> en internet.</h1>
+      <p class="lead">Creamos páginas web claras, rápidas y a tu medida para que te encuentren en Google, conozcan lo que ofreces y te contacten sin vueltas.</p>
+      <div class="cta">
+        <a class="btn" href="#contacto">Quiero mi página</a>
+        <a class="btn ghost" href="#trabajos">Ver trabajos</a>
+      </div>
+    </div>
+  </div>
+
+  <section id="servicios" class="alt">
+    <div class="wrap">
+      <h2>Lo que hacemos</h2>
+      <p class="sub">Cada hilo cuenta: diseño, contenido y técnica trabajan juntos para que tu página funcione de verdad.</p>
+      <div class="grid">
+        <div class="card"><div class="ico">🧵</div><h3>Páginas a medida</h3><p>Diseño propio para tu marca, sin plantillas genéricas. Se ve bien en celular y en computador.</p></div>
+        <div class="card"><div class="ico">🔎</div><h3>Listos para Google</h3><p>Títulos, descripciones y estructura pensados para que tu negocio aparezca cuando te buscan.</p></div>
+        <div class="card"><div class="ico">💬</div><h3>Contacto directo</h3><p>Botones de WhatsApp, formularios y redes para que tus clientes te escriban en un toque.</p></div>
+        <div class="card"><div class="ico">🛠️</div><h3>Cambios y soporte</h3><p>Actualizamos textos, fotos y precios cuando lo necesites, sin que tengas que pelear con la tecnología.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="proceso">
+    <div class="wrap">
+      <h2>Cómo trabajamos</h2>
+      <p class="sub">Un proceso simple, sin sorpresas.</p>
+      <div class="steps">
+        <div class="step"><h3>Conversamos</h3><p>Nos cuentas de tu negocio, qué vendes y a quién quieres llegar.</p></div>
+        <div class="step"><h3>Diseñamos</h3><p>Armamos tu página con tu estilo, tus fotos y tus textos claros.</p></div>
+        <div class="step"><h3>Publicamos</h3><p>La dejamos en línea, lista para que Google y tus clientes la encuentren.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="trabajos" class="alt">
+    <div class="wrap">
+      <h2>Trabajos</h2>
+      <p class="sub">Algunas de las páginas que hemos creado.</p>
+      <div class="work">
+        <div class="shot">
+          <div class="thumb">Xocolati</div>
+          <div class="t"><h3>Xocolati Catering y Eventos</h3><p>Página para dar a conocer un servicio de catering y facilitar el contacto para eventos.</p></div>
+        </div>
+        <div class="shot">
+          <div class="thumb next">Tu proyecto aquí</div>
+          <div class="t"><h3>El siguiente puede ser el tuyo</h3><p>Cuéntanos tu idea y la convertimos en una página que trabaje por ti.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="wrap contact">
+      <div>
+        <h2>Hablemos de tu página</h2>
+        <p class="sub">Cuéntanos qué necesitas y te respondemos con una propuesta. Sin compromiso.</p>
+        <div style="margin-top: 24px;">
+          <!-- Botón directo a tu WhatsApp con mensaje predeterminado -->
+          <a class="btn wa" href="https://wa.me/56965316337?text=Hola,%20vi%20Tejido%20Digital%20y%20me%20interesa%20cotizar%20una%20página%20web." target="_blank">
+            💬 Escribir por WhatsApp (+569 6531 6337)
+          </a>
+        </div>
+      </div>
+      
+      <!-- Formulario integrado con Formspree para que llegue a zenbbit@gmail.com -->
+      <form id="f" action="https://formspree.io/f/tu-codigo-formspree" method="POST">
+        <div><label for="n">Nombre</label><input id="n" name="name" autocomplete="name" required></div>
+        <div><label for="e">Correo o Teléfono</label><input id="e" name="contact" required></div>
+        <div><label for="m">¿Qué necesitas?</label><textarea id="m" name="message" required></textarea></div>
+        <button class="btn" type="submit">Enviar mensaje al correo</button>
+        <p id="msg" role="status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© <span id="y">2026</span> Tejido Digital</span><span>Páginas web a tu medida</span></div>
+</footer>
+
+<script>
+document.getElementById("y").textContent = new Date().getFullYear();
+
+// Manejo visual opcional para formularios con AJAX o aviso de éxito
+var form = document.getElementById("f");
+form.addEventListener("submit", async function(ev) {
+  ev.preventDefault();
+  var out = document.getElementById("msg");
+  var data = new FormData(form);
+  
+  out.textContent = "Enviando mensaje...";
+  
+  try {
+    let response = await fetch(form.action, {
+      method: form.method,
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+    
+    if (response.ok) {
+      out.textContent = "¡Mensaje enviado con éxito! Te responderemos pronto a zenbbit@gmail.com";
+      form.reset();
+    } else {
+      out.textContent = "Hubo un error al enviar. Escríbenos directamente por WhatsApp.";
+    }
+  } catch (error) {
+    out.textContent = "Error de conexión. Usa el botón de WhatsApp.";
+  }
+});
+</script>
+</body>
+</html>

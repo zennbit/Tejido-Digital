@@ -165,7 +165,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         </div>
       </div>
 
-      <form id="f" action="https://formspree.io/f/xaeezvyk" method="POST">
+      <form id="f" data-endpoint="https://formspree.io/f/xaeezvyk" onsubmit="return false;">
         <div><label for="n">Nombre</label><input id="n" name="name" autocomplete="name" required></div>
         <div><label for="e">Correo o Teléfono</label><input id="e" name="contact" required></div>
         <div><label for="m">¿Qué necesitas?</label><textarea id="m" name="message" required></textarea></div>
@@ -194,7 +194,7 @@ form.addEventListener("submit", async function (e) {
   btn.disabled = true;
 
   try {
-    var res = await fetch(form.action, {
+    var res = await fetch(form.getAttribute("data-endpoint"), {
       method: "POST",
       body: new FormData(form),
       headers: { "Accept": "application/json" }

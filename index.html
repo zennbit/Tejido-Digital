@@ -36,6 +36,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .links a{text-decoration:none;color:var(--muted)}
 .links a:hover{color:var(--text)}
 .btn{display:inline-block;background:var(--accent);color:var(--accent-ink)!important;padding:13px 24px;border-radius:999px;font-weight:600;text-decoration:none;border:0;font-size:16px;cursor:pointer;text-align:center}
+.btn:disabled{opacity:.6;cursor:not-allowed}
 .btn.ghost{background:transparent;color:var(--text)!important;border:1.5px solid var(--line)}
 .btn.wa{background:#25d366;color:#fff!important;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
 .hero{position:relative;padding:84px 0 72px;overflow:hidden}
@@ -77,7 +78,8 @@ label{font-size:14px;font-weight:600}
 input,textarea{width:100%;font:inherit;color:var(--text);background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:5px}
 input:focus,textarea:focus{outline:2px solid var(--teal);outline-offset:1px}
 textarea{min-height:120px;resize:vertical}
-#msg{font-size:14px;color:var(--teal);min-height:1.3em;margin:0;font-weight:600;}
+#msg{font-size:14px;color:var(--teal);min-height:1.3em;margin:0;font-weight:600}
+#msg.error{color:var(--accent)}
 footer{padding:30px 0 40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 @media (max-width:640px){.links a:not(.btn){display:none}.hero{padding:56px 0 52px}section{padding:52px 0}}
@@ -157,22 +159,19 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <h2>Hablemos de tu página</h2>
         <p class="sub">Cuéntanos qué necesitas y te respondemos con una propuesta. Sin compromiso.</p>
         <div style="margin-top: 24px;">
-          <a class="btn wa" href="https://wa.me/56965316337?text=Hola,%20vi%20Tejido%20Digital%20y%20me%20interesa%20cotizar%20una%20página%20web." target="_blank">
+          <a class="btn wa" href="https://wa.me/56965316337?text=Hola,%20vi%20Tejido%20Digital%20y%20me%20interesa%20cotizar%20una%20página%20web." target="_blank" rel="noopener">
             💬 Escribir por WhatsApp (+569 6531 6337)
           </a>
         </div>
       </div>
-      
-      <!-- Se añade target="hidden_iframe" para evitar redirección -->
-      <form id="f" action="https://formspree.io/f/xaeezvyk" method="POST" target="hidden_iframe">
+
+      <form id="f" action="https://formspree.io/f/xaeezvyk" method="POST">
         <div><label for="n">Nombre</label><input id="n" name="name" autocomplete="name" required></div>
         <div><label for="e">Correo o Teléfono</label><input id="e" name="contact" required></div>
         <div><label for="m">¿Qué necesitas?</label><textarea id="m" name="message" required></textarea></div>
         <button class="btn" type="submit">Enviar mensaje al correo</button>
         <p id="msg" role="status"></p>
       </form>
-      <!-- Iframe invisible que recibe la respuesta de Formspree -->
-      <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
     </div>
   </section>
 </main>
@@ -184,16 +183,36 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <script>
 document.getElementById("y").textContent = new Date().getFullYear();
 
-// Script para mostrar el mensaje de éxito al enviar el formulario
 var form = document.getElementById("f");
-form.addEventListener("submit", function() {
-  var out = document.getElementById("msg");
+var out = document.getElementById("msg");
+var btn = form.querySelector("button[type=submit]");
+
+form.addEventListener("submit", async function (e) {
+  e.preventDefault(); // evita la redirección a Formspree
+  out.className = "";
   out.textContent = "Enviando mensaje...";
-  
-  setTimeout(function() {
-    out.textContent = "¡Correo enviado! Te responderemos pronto.";
-    form.reset();
-  }, 1000); // Pequeña pausa simulada de 1 segundo para mejorar la experiencia visual
+  btn.disabled = true;
+
+  try {
+    var res = await fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { "Accept": "application/json" }
+    });
+
+    if (res.ok) {
+      out.textContent = "¡Correo Enviado! Te responderemos pronto.";
+      form.reset();
+    } else {
+      out.className = "error";
+      out.textContent = "No se pudo enviar. Intenta de nuevo o escríbenos por WhatsApp.";
+    }
+  } catch (err) {
+    out.className = "error";
+    out.textContent = "Error de conexión. Intenta de nuevo o escríbenos por WhatsApp.";
+  } finally {
+    btn.disabled = false;
+  }
 });
 </script>
 </body>

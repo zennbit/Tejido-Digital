@@ -157,15 +157,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <h2>Hablemos de tu página</h2>
         <p class="sub">Cuéntanos qué necesitas y te respondemos con una propuesta. Sin compromiso.</p>
         <div style="margin-top: 24px;">
-          <!-- Botón directo a tu WhatsApp con mensaje predeterminado -->
           <a class="btn wa" href="https://wa.me/56965316337?text=Hola,%20vi%20Tejido%20Digital%20y%20me%20interesa%20cotizar%20una%20página%20web." target="_blank">
             💬 Escribir por WhatsApp (+569 6531 6337)
           </a>
         </div>
       </div>
       
-      <!-- Formulario integrado con Formspree para que llegue a zenbbit@gmail.com -->
-      <form id="f" action="https://formspree.io/f/tu-codigo-formspree" method="POST">
+      <form id="f" action="https://formspree.io/f/xaeezvyk" method="POST">
         <div><label for="n">Nombre</label><input id="n" name="name" autocomplete="name" required></div>
         <div><label for="e">Correo o Teléfono</label><input id="e" name="contact" required></div>
         <div><label for="m">¿Qué necesitas?</label><textarea id="m" name="message" required></textarea></div>
@@ -183,7 +181,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <script>
 document.getElementById("y").textContent = new Date().getFullYear();
 
-// Manejo visual opcional para formularios con AJAX o aviso de éxito
 var form = document.getElementById("f");
 form.addEventListener("submit", async function(ev) {
   ev.preventDefault();

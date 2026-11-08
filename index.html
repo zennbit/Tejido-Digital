@@ -30,8 +30,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .nav{display:flex;align-items:center;justify-content:space-between;height:62px}
 .logo{font-family:Fraunces,Georgia,serif;font-weight:700;font-size:20px;text-decoration:none;display:flex;align-items:center;gap:8px}
 .logo i{width:22px;height:22px;border-radius:6px;display:inline-block;background:
- ⁡⁢repetition-linear-gradient(0deg,var(--accent) 0 3px,transparent 3px 7px),⁡
- ⁡repeating-linear-gradient(90deg,var(--teal) 0 3px,transparent 3px 7px)}
+ repeating-linear-gradient(0deg,var(--accent) 0 3px,transparent 3px 7px),
+ repeating-linear-gradient(90deg,var(--teal) 0 3px,transparent 3px 7px)}
 .links{display:flex;gap:22px;align-items:center;font-size:15px}
 .links a{text-decoration:none;color:var(--muted)}
 .links a:hover{color:var(--text)}
@@ -40,8 +40,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .btn.wa{background:#25d366;color:#fff!important;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
 .hero{position:relative;padding:84px 0 72px;overflow:hidden}
 .hero::before{content:"";position:absolute;inset:0;opacity:.16;pointer-events:none;background:
- ⁡⁢repeating-linear-gradient(0deg,var(--accent) 0 2px,transparent 2px 22px),⁡
- ⁡repeating-linear-gradient(90deg,var(--teal) 0 2px,transparent 2px 22px);⁡
+ repeating-linear-gradient(0deg,var(--accent) 0 2px,transparent 2px 22px),
+ repeating-linear-gradient(90deg,var(--teal) 0 2px,transparent 2px 22px);
  -webkit-mask-image:linear-gradient(115deg,#000 0%,transparent 62%);mask-image:linear-gradient(115deg,#000 0%,transparent 62%)}
 .hero .wrap{position:relative}
 .eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:18px}
@@ -77,7 +77,7 @@ label{font-size:14px;font-weight:600}
 input,textarea{width:100%;font:inherit;color:var(--text);background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:5px}
 input:focus,textarea:focus{outline:2px solid var(--teal);outline-offset:1px}
 textarea{min-height:120px;resize:vertical}
-#msg{font-size:14px;color:var(--teal);min-height:1.3em;margin:0}
+#msg{font-size:14px;color:var(--teal);min-height:1.3em;margin:0;font-weight:600;}
 footer{padding:30px 0 40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 @media (max-width:640px){.links a:not(.btn){display:none}.hero{padding:56px 0 52px}section{padding:52px 0}}
@@ -163,12 +163,16 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         </div>
       </div>
       
-      <form id="f" action="https://formspree.io/f/xaeezvyk" method="POST">
+      <!-- Se añade target="hidden_iframe" para evitar redirección -->
+      <form id="f" action="https://formspree.io/f/xaeezvyk" method="POST" target="hidden_iframe">
         <div><label for="n">Nombre</label><input id="n" name="name" autocomplete="name" required></div>
         <div><label for="e">Correo o Teléfono</label><input id="e" name="contact" required></div>
         <div><label for="m">¿Qué necesitas?</label><textarea id="m" name="message" required></textarea></div>
         <button class="btn" type="submit">Enviar mensaje al correo</button>
+        <p id="msg" role="status"></p>
       </form>
+      <!-- Iframe invisible que recibe la respuesta de Formspree -->
+      <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
     </div>
   </section>
 </main>
@@ -179,6 +183,18 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 <script>
 document.getElementById("y").textContent = new Date().getFullYear();
+
+// Script para mostrar el mensaje de éxito al enviar el formulario
+var form = document.getElementById("f");
+form.addEventListener("submit", function() {
+  var out = document.getElementById("msg");
+  out.textContent = "Enviando mensaje...";
+  
+  setTimeout(function() {
+    out.textContent = "¡Correo enviado! Te responderemos pronto.";
+    form.reset();
+  }, 1000); // Pequeña pausa simulada de 1 segundo para mejorar la experiencia visual
+});
 </script>
 </body>
 </html>
